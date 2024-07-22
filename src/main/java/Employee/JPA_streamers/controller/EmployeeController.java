@@ -49,9 +49,24 @@ public class EmployeeController {
         return employeeService.getGenderCountByYear(joiningYear);
     }
 
+//    @GetMapping("/getByFilter")
+//    public List<Employee> getByFilter(@RequestParam int joiningYear, @RequestParam String gender, @RequestParam String education){
+//        return employeeService.getByFilter(joiningYear, gender, education);
+//    }
+
     @GetMapping("/getByFilter")
-    public List<Employee> getByFilter(@RequestParam int joiningYear, @RequestParam String gender, @RequestParam String education){
-        return employeeService.getByFilter(joiningYear, gender, education);
+    public List<Employee> getByFilter(
+            @RequestParam(required = false) Integer joiningYear,
+            @RequestParam(required = false) String gender,
+            @RequestParam(required = false) String education,
+            @RequestParam(required = false) Integer age,
+            @RequestParam(required = false) String everBenched,
+            @RequestParam(required = false) Integer experienceInCurrentDomain,
+            @RequestParam(required = false) Integer leaveOrNot,
+            @RequestParam(required = false) Integer paymentTier,
+
+            @RequestParam(required = false) String city){
+        return employeeService.getByFilter(joiningYear, gender, education, age, everBenched,experienceInCurrentDomain,leaveOrNot,paymentTier,city);
     }
 
 }

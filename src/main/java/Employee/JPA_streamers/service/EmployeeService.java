@@ -72,9 +72,23 @@ public class EmployeeService {
 
     }
 
-    public List<Employee> getByFilter(int joiningYear, String gender, String education) {
+//    public List<Employee> getByFilter(int joiningYear, String gender, String education) {
+//        return jpaStreamer.stream(Employee.class)
+//                .filter(e->gender.equalsIgnoreCase(e.getGender()) && e.getJoiningYear()==joiningYear && e.getEducation().equalsIgnoreCase(education))
+//                .collect(Collectors.toList());
+//    }
+
+    public List<Employee>getByFilter(Integer joiningYear, String gender, String education,Integer age,String everBenched, Integer experienceInCurrentDomain,Integer leaveOrNot,Integer paymentTier, String city){
         return jpaStreamer.stream(Employee.class)
-                .filter(e->gender.equalsIgnoreCase(e.getGender()) && e.getJoiningYear()==joiningYear && e.getEducation().equalsIgnoreCase(education))
+                .filter(e->joiningYear==null || e.getJoiningYear()==joiningYear)
+                .filter(e-> gender == null || e.getGender().equalsIgnoreCase(gender))
+                .filter(e-> education == null || e.getEducation().equalsIgnoreCase(education))
+                .filter(e->age==null || e.getAge()==age)
+                .filter(e-> everBenched == null || e.getEverBenched().equalsIgnoreCase(everBenched))
+                .filter(e->experienceInCurrentDomain==null || e.getExperienceInCurrentDomain()==experienceInCurrentDomain)
+                .filter(e->leaveOrNot==null || e.getLeaveOrNot()==leaveOrNot)
+                .filter(e->paymentTier==null || e.getPaymentTier()==paymentTier)
+                .filter(e-> city == null || e.getCity().equalsIgnoreCase(city))
                 .collect(Collectors.toList());
     }
 }
